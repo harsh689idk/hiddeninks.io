@@ -1,0 +1,417 @@
+/* ---------- Global Reset & Base Styles ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #F1EFEC;
+  color: #030303;
+  line-height: 1.6;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+/* ---------- Light & Dark Modes ---------- */
+.light-mode {
+  background-color: #F1EFEC;
+  color: #030303;
+}
+
+.dark-mode {
+  background-color: #030303;
+  color: #F1EFEC;
+}
+
+/* ---------- Loading Screen ---------- */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #F1EFEC;
+  color: #123458;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* ---------- Global Container & Content ---------- */
+.content {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+/* ---------- Header (Global for index, howtogetpublished, about) ---------- */
+header {
+  background-color: #D4C9BE;
+  padding: 15px 20px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: bold;
+  color: #123458;
+  text-decoration: none;
+  margin-right: 30px;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #030303;
+}
+
+nav a:hover,
+nav a.active {
+  color: #123458;
+}
+
+/* ---------- Search Area (Used on Homepage) ---------- */
+.search-area {
+  width: 100%;
+  max-width: 300px;
+  margin-top: 10px;
+  align-self: flex-end;
+}
+
+.search-area input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #030303;
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: #F1EFEC;
+  color: #030303;
+}
+
+/* ---------- Homepage Book Grid ---------- */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.book {
+  background-color: #D4C9BE;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.book:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.book img {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.book h3 {
+  font-size: 16px;
+  color: #123458;
+  margin-bottom: 5px;
+}
+
+.book p,
+.book span.genre {
+  font-size: 14px;
+  color: #030303;
+}
+
+/* ---------- Footer (Global) ---------- */
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #D4C9BE;
+  color: #123458;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+/* ---------- About & Publish Sections ---------- */
+.about-section,
+.publish-section {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #D4C9BE;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.about-section h2,
+.publish-section h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #123458;
+}
+
+.about-section p,
+.publish-section p {
+  font-size: 16px;
+  color: #030303;
+  margin-bottom: 10px;
+}
+
+/* ---------- FAQ Dropdown Styling (on Publish Page) ---------- */
+.faq-section {
+  margin-top: 30px;
+}
+
+.faq-section h2 {
+  text-align: center;
+  color: #123458;
+  margin-bottom: 15px;
+}
+
+.faq-section details {
+  background: #D4C9BE;
+  border: 1px solid #123458;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.faq-section details[open] {
+  background: #123458;
+  color: #F1EFEC;
+}
+
+.faq-section summary {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.faq-section p {
+  margin-top: 10px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+/* ---------- Read Page Specific Styles ---------- */
+
+/* Use Flexbox to keep footer at bottom */
+.read-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Read Header */
+.read-header {
+  background-color: #D4C9BE;
+  padding: 15px 20px;
+}
+
+.read-header .header-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Home Button (Custom Style using .button-55) */
+.button-55 {
+  background-color: #fff;
+  border: 2px solid #030303;
+  border-radius: 15px 225px 255px 15px;
+  box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+  color: #41403e;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  user-select: none;
+}
+.button-55:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+/* Header Info */
+.header-info {
+  text-align: center;
+}
+
+/* Dark Mode Toggle using provided switch */
+.checkbox-wrapper-58 {
+  display: flex;
+  align-items: center;
+}
+.checkbox-wrapper-58 input[type="checkbox"] {
+  visibility: hidden;
+  display: none;
+}
+.checkbox-wrapper-58 .switch {
+  --switch_width: 2em;
+  --switch_height: 1em;
+  --thumb_color: #e8e8e8;
+  --track_color: #e8e8e8;
+  --track_active_color: #888;
+  --outline_color: #000;
+  position: relative;
+  display: inline-block;
+  width: var(--switch_width);
+  height: var(--switch_height);
+  cursor: pointer;
+}
+.checkbox-wrapper-58 .slider {
+  box-sizing: border-box;
+  border: 2px solid var(--outline_color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--track_color);
+  transition: 0.15s;
+  border-radius: var(--switch_height);
+}
+.checkbox-wrapper-58 .slider:before {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  height: var(--switch_height);
+  width: var(--switch_height);
+  border: 2px solid var(--outline_color);
+  border-radius: 100%;
+  left: -2px;
+  bottom: -2px;
+  background-color: var(--thumb_color);
+  transform: translateY(-0.2em);
+  box-shadow: 0 0.2em 0 var(--outline_color);
+  transition: 0.15s;
+}
+.checkbox-wrapper-58 input:checked + .slider {
+  background-color: var(--track_active_color);
+}
+.checkbox-wrapper-58 input:checked + .slider:before {
+  transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.2em);
+}
+
+/* Read Header Controls */
+.read-header .header-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Read Main Content */
+.read-main {
+  flex: 1;
+  background-color: #D4C9BE;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 20px;
+}
+
+#chapterIndicator {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #123458;
+}
+
+.book-content {
+  font-size: 20px;
+  line-height: 1.8;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* Navigation Buttons for Read Page */
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.nav-btn {
+  background-color: #123458;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #F1EFEC;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background-color: #0D2B4E;
+}
+
+/* Progress Bar for Read Page */
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background-color: #D4C9BE;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.progress {
+  width: 0%;
+  height: 100%;
+  background-color: #123458;
+  transition: width 0.4s ease;
+}
+
+/* Read Page Footer */
+.read-footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #D4C9BE;
+  color: #123458;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+/* ---------- Responsive Adjustments ---------- */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-area {
+    margin-top: 10px;
+    align-self: center;
+  }
+  .read-container {
+    flex-direction: column;
+  }
+}
