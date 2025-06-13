@@ -6,12 +6,19 @@ document.addEventListener("DOMContentLoaded", function () {
       books.forEach((book, index) => {
         const bookCard = document.createElement("div");
         bookCard.classList.add("book");
+        
+        // Determine image source based on book title
+        const imageSource = book.title.toLowerCase().includes("shooting an elephant") 
+          ? "shootinganelephant.png" 
+          : "default.png";
+
         bookCard.innerHTML = `
-          <img src="default.png" alt="Book Cover">
+          <img src="${imageSource}" alt="Book Cover">
           <h3>${book.title}</h3>
           <p>${book.author}</p>
           <span class="genre">${book.genre}</span>
         `;
+        
         bookCard.addEventListener("click", () => {
           window.location.href = `read.html?book=${index}`;
         });
@@ -19,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-  // Simple search filter across all books
+  // Search filter remains unchanged
   document.getElementById("searchBar").addEventListener("keyup", function () {
     const searchText = this.value.toLowerCase();
     document.querySelectorAll(".book").forEach(book => {
