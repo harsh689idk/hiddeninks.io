@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         contentDiv.style.opacity = 0;
         setTimeout(() => {
           contentDiv.textContent = book.content[currentPage];
-          chapterIndicator.textContent = "Chapter " + (currentPage + 1);
+          chapterIndicator.textContent = "Page " + (currentPage + 1);
           contentDiv.style.opacity = 1;
           progressBar.style.width = ((currentPage + 1) / book.content.length) * 100 + "%";
           localStorage.setItem("bookmark-" + bookIndex, currentPage);
