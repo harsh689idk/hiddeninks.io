@@ -4,525 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Read Book - HiddenInks.io</title>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* ---------- Global Reset & Base Styles ---------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      transition: all 0.3s ease;
-    }
-
-    html, body {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      font-family: 'Ubuntu', sans-serif;
-      background-color: #F1EFEC;
-      color: #030303;
-      line-height: 1.6;
-      transition: background-color 0.4s, color 0.4s;
-      scroll-behavior: smooth;
-    }
-
-    /* ---------- Light & Dark Modes ---------- */
-    .light-mode {
-      background-color: #F1EFEC;
-      color: #030303;
-    }
-
-    .dark-mode {
-      background-color: #030303;
-      color: #F1EFEC;
-    }
-
-    .dark-mode .logo {
-      color: #D4C9BE;
-    }
-
-    /* ---------- Loading Screen ---------- */
-    .loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #F1EFEC;
-      color: #123458;
-      font-size: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      flex-direction: column;
-    }
-
-    .dark-mode .loading-screen {
-      background-color: #030303;
-      color: #D4C9BE;
-    }
-
-    .loading-spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid rgba(18, 52, 88, 0.2);
-      border-top: 5px solid #123458;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-
-    .dark-mode .loading-spinner {
-      border-top-color: #D4C9BE;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* ---------- Read Page Container ---------- */
-    .read-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    /* Read Header */
-    .read-header {
-      background-color: #D4C9BE;
-      padding: 15px 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .dark-mode .read-header {
-      background-color: #1A1A1A;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* Home Button */
-    .button-55 {
-      background-color: #fff;
-      border: 2px solid #030303;
-      border-radius: 15px 225px 255px 15px;
-      box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
-      color: #41403e;
-      cursor: pointer;
-      font-size: 1rem;
-      padding: 0.75rem 1.25rem;
-      text-decoration: none;
-      transition: all 235ms ease-in-out;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .dark-mode .button-55 {
-      background-color: #1A1A1A;
-      color: #F1EFEC;
-      border-color: #555;
-    }
-    .button-55:hover {
-      box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
-      transform: translate3d(0, 2px, 0);
-    }
-
-    /* Header Info */
-    .header-info {
-      text-align: center;
-    }
-
-    .header-info h1 {
-      font-size: 1.8rem;
-      color: #123458;
-      margin-bottom: 5px;
-    }
-
-    .dark-mode .header-info h1 {
-      color: #D4C9BE;
-    }
-
-    .header-info p {
-      font-size: 1.1rem;
-      color: #555;
-    }
-
-    .dark-mode .header-info p {
-      color: #999;
-    }
-
-    /* Dark Mode Toggle */
-    .checkbox-wrapper-58 {
-      display: flex;
-      align-items: center;
-    }
-    .checkbox-wrapper-58 input[type="checkbox"] {
-      visibility: hidden;
-      display: none;
-    }
-    .checkbox-wrapper-58 .switch {
-      --switch_width: 2em;
-      --switch_height: 1em;
-      --thumb_color: #e8e8e8;
-      --track_color: #e8e8e8;
-      --track_active_color: #888;
-      --outline_color: #000;
-      position: relative;
-      display: inline-block;
-      width: var(--switch_width);
-      height: var(--switch_height);
-      cursor: pointer;
-    }
-    .dark-mode .checkbox-wrapper-58 .switch {
-      --outline_color: #555;
-    }
-    .checkbox-wrapper-58 .slider {
-      box-sizing: border-box;
-      border: 2px solid var(--outline_color);
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: var(--track_color);
-      transition: 0.15s;
-      border-radius: var(--switch_height);
-    }
-    .checkbox-wrapper-58 .slider:before {
-      box-sizing: border-box;
-      position: absolute;
-      content: "";
-      height: var(--switch_height);
-      width: var(--switch_height);
-      border: 2px solid var(--outline_color);
-      border-radius: 100%;
-      left: -2px;
-      bottom: -2px;
-      background-color: var(--thumb_color);
-      transform: translateY(-0.2em);
-      box-shadow: 0 0.2em 0 var(--outline_color);
-      transition: 0.15s;
-    }
-    .checkbox-wrapper-58 input:checked + .slider {
-      background-color: var(--track_active_color);
-    }
-    .checkbox-wrapper-58 input:checked + .slider:before {
-      transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.2em);
-    }
-
-    /* Read Main Content */
-    .read-main {
-      flex: 1;
-      background-color: #D4C9BE;
-      padding: 40px 20px;
-      margin: 30px auto;
-      border-radius: 12px;
-      max-width: 900px;
-      width: 90%;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      position: relative;
-    }
-
-    .dark-mode .read-main {
-      background-color: #1A1A1A;
-    }
-
-    #chapterIndicator {
-      font-size: 1.8rem;
-      margin-bottom: 25px;
-      color: #123458;
-      font-weight: 600;
-      text-align: center;
-      padding-bottom: 15px;
-      border-bottom: 2px solid rgba(18, 52, 88, 0.2);
-    }
-
-    .dark-mode #chapterIndicator {
-      color: #D4C9BE;
-      border-bottom-color: rgba(212, 201, 190, 0.2);
-    }
-
-    .book-content {
-      font-size: 1.25rem;
-      line-height: 1.8;
-      text-align: left;
-      margin-bottom: 30px;
-      transition: opacity 0.4s ease-in-out;
-    }
-
-    .book-content p {
-      margin-bottom: 25px;
-      text-indent: 2em;
-    }
-
-    .book-content p:first-child {
-      text-indent: 0;
-    }
-
-    /* Navigation Buttons */
-    .nav-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      margin: 40px 0 30px;
-    }
-
-    .nav-btn {
-      background-color: #123458;
-      border: none;
-      padding: 12px 30px;
-      font-size: 1.1rem;
-      color: #F1EFEC;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .nav-btn:hover {
-      background-color: #0D2B4E;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Progress Bar */
-    .progress-container {
-      margin: 30px auto 15px;
-      max-width: 800px;
-    }
-
-    .progress-text {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #555;
-      margin-bottom: 8px;
-    }
-
-    .dark-mode .progress-text {
-      color: #999;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 8px;
-      background-color: rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .progress {
-      width: 0%;
-      height: 100%;
-      background-color: #123458;
-      transition: width 0.4s ease;
-      border-radius: 4px;
-    }
-
-    .dark-mode .progress {
-      background-color: #D4C9BE;
-    }
-
-    /* Footer */
-    .read-footer {
-      text-align: center;
-      padding: 25px 15px;
-      background-color: #D4C9BE;
-      color: #123458;
-      font-size: 0.9rem;
-      margin-top: auto;
-    }
-
-    .dark-mode .read-footer {
-      background-color: #1A1A1A;
-      color: #D4C9BE;
-    }
-
-    /* Bookmark Indicator */
-    .bookmark-indicator {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      color: #123458;
-      font-size: 1.5rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .dark-mode .bookmark-indicator {
-      color: #D4C9BE;
-    }
-
-    .bookmark-active {
-      opacity: 1;
-    }
-
-    /* Font Controls */
-    .font-controls {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 20px 0;
-    }
-
-    .font-btn {
-      background: none;
-      border: 2px solid #123458;
-      color: #123458;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-
-    .dark-mode .font-btn {
-      border-color: #D4C9BE;
-      color: #D4C9BE;
-    }
-
-    .font-btn:hover {
-      background-color: rgba(18, 52, 88, 0.1);
-    }
-
-    .dark-mode .font-btn:hover {
-      background-color: rgba(212, 201, 190, 0.1);
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      .header-container {
-        flex-direction: column;
-        gap: 15px;
-      }
-      
-      .header-info {
-        order: 3;
-        width: 100%;
-        margin-top: 15px;
-      }
-      
-      .nav-buttons {
-        flex-direction: column;
-        gap: 15px;
-      }
-      
-      .nav-btn {
-        width: 100%;
-        justify-content: center;
-      }
-      
-      #chapterIndicator {
-        font-size: 1.5rem;
-      }
-      
-      .book-content {
-        font-size: 1.1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .book-content {
-        font-size: 1rem;
-      }
-      
-      .button-55 {
-        padding: 0.6rem 1rem;
-      }
-    }
-  </style>
+  <!-- Ubuntu font -->
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body class="light-mode">
   <!-- Loading Screen -->
-  <div id="loadingScreen" class="loading-screen">
-    <div class="loading-spinner"></div>
-    <p>Loading Literary Treasure...</p>
-  </div>
+  <div id="loadingScreen" class="loading-screen">Loading...</div>
 
   <div class="read-container">
     <!-- Header -->
     <header class="read-header">
       <div class="header-container">
-        <a href="index.html" class="button-55 home-btn">
-          <i class="fas fa-home"></i>
-          Home
-        </a>
-        
+        <a href="index.html" class="button-55 home-btn">Home</a>
         <div class="header-info">
-          <h1 id="bookTitle">Shooting an Elephant</h1>
-          <p id="bookAuthor">By George Orwell</p>
+          <h1 id="bookTitle">Loading...</h1>
+          <p id="bookAuthor"></p>
         </div>
-        
-        <div class="header-controls">
-          <div class="checkbox-wrapper-58">
-            <label class="switch">
-              <input type="checkbox" id="darkModeToggle">
-              <span class="slider"></span>
-            </label>
-          </div>
+        <div class="checkbox-wrapper-58">
+          <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+          </label>
         </div>
       </div>
     </header>
 
     <!-- Main Reading Content -->
     <main class="read-main">
-      <div class="bookmark-indicator" id="bookmarkIndicator">
-        <i class="fas fa-bookmark"></i>
-      </div>
-      
       <h2 id="chapterIndicator">Page 1</h2>
-      
-      <div class="font-controls">
-        <button class="font-btn" id="fontSmaller" title="Decrease font size">A-</button>
-        <button class="font-btn" id="fontReset" title="Reset font size">A</button>
-        <button class="font-btn" id="fontLarger" title="Increase font size">A+</button>
-      </div>
-      
-      <div id="bookContent" class="book-content">
-        <p>In Moulmein, in Lower Burma, I was hated by large numbers of people—the only time in my life that I have been important enough for this to happen to me. I was sub-divisional police officer of the town, and in an aimless, petty kind of way anti-European feeling was very bitter. No one had the guts to raise a riot, but if a European woman went through the bazaars alone somebody would probably spit betel juice over her dress. As a police officer I was an obvious target and was baited whenever it seemed safe to do so.</p>
-        <p>When a nimble Burman tripped me up on the football field and the referee (another Burman) looked the other way, the crowd yelled with hideous laughter. This happened more than once. In the end the sneering yellow faces of young men that met me everywhere, the insults hooted after me when I was at a safe distance, got badly on my nerves.</p>
-      </div>
-      
+      <div id="bookContent" class="book-content">Loading...</div>
       <div class="nav-buttons">
-        <button id="prevPage" class="nav-btn">
-          <i class="fas fa-arrow-left"></i>
-          Prev
-        </button>
-        <button id="nextPage" class="nav-btn">
-          Next
-          <i class="fas fa-arrow-right"></i>
-        </button>
+        <button id="prevPage" class="nav-btn">⬅ Prev</button>
+        <button id="nextPage" class="nav-btn">Next ➡</button>
       </div>
-      
-      <div class="progress-container">
-        <div class="progress-text" id="progressText">Progress: 25%</div>
-        <div class="progress-bar">
-          <div id="progress" class="progress"></div>
-        </div>
+      <div class="progress-bar">
+        <div id="progress" class="progress"></div>
       </div>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer fixed at bottom -->
     <footer class="read-footer">
       <p>&copy; 2025 HiddenInks.io. All Rights Reserved.</p>
     </footer>
@@ -530,127 +51,89 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Show loading screen for 1.5 seconds
-      const loadingScreen = document.getElementById("loadingScreen");
-      setTimeout(() => {
-        loadingScreen.style.display = "none";
-      }, 1500);
+  // Show loading screen for 1.5 seconds
+  const loadingScreen = document.getElementById("loadingScreen");
+  setTimeout(() => {
+    loadingScreen.style.display = "none";
+  }, 1500);
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const bookIndex = urlParams.get("book");
+  const urlParams = new URLSearchParams(window.location.search);
+  const bookIndex = urlParams.get("book");
 
-      // Mock book data for demonstration
-      const books = [
-        {
-          title: "Shooting an Elephant",
-          author: "George Orwell",
-          content: [
-            "In Moulmein, in Lower Burma, I was hated by large numbers of people—the only time in my life that I have been important enough for this to happen to me. I was sub-divisional police officer of the town, and in an aimless, petty kind of way anti-European feeling was very bitter. No one had the guts to raise a riot, but if a European woman went through the bazaars alone somebody would probably spit betel juice over her dress. As a police officer I was an obvious target and was baited whenever it seemed safe to do so.",
-            "When a nimble Burman tripped me up on the football field and the referee (another Burman) looked the other way, the crowd yelled with hideous laughter. This happened more than once. In the end the sneering yellow faces of young men that met me everywhere, the insults hooted after me when I was at a safe distance, got badly on my nerves.",
-            "The young Buddhist priests were the worst of all. There were several thousands of them in the town and none of them seemed to have anything to do except stand on street corners and jeer at Europeans.",
-            "All this was perplexing and upsetting. For at that time I had already made up my mind that imperialism was an evil thing and the sooner I chucked up my job and got out of it the better. Theoretically—and secretly, of course—I was all for the Burmese and all against their oppressors, the British. As for the job I was doing, I hated it more bitterly than I can perhaps make clear. In a job like that you see the dirty work of Empire at close quarters. The wretched prisoners huddling in the stinking cages of the lock-ups, the grey, cowed faces of the long-term convicts, the scarred buttocks of the men who had been flogged with bamboos—all these oppressed me with an intolerable sense of guilt."
-          ]
-        }
-      ];
-
-      const book = books[bookIndex || 0];
-      if (book) {
-        // Set title and author
-        document.getElementById("bookTitle").textContent = book.title;
-        document.getElementById("bookAuthor").textContent = "By " + book.author;
-
-        // Retrieve saved bookmark for this book
-        let currentPage = localStorage.getItem("bookmark-" + bookIndex);
-        currentPage = currentPage !== null ? parseInt(currentPage) : 0;
-
-        const contentDiv = document.getElementById("bookContent");
-        const chapterIndicator = document.getElementById("chapterIndicator");
-        const progressBar = document.getElementById("progress");
-        const progressText = document.getElementById("progressText");
-        const bookmarkIndicator = document.getElementById("bookmarkIndicator");
-
-        // Font size controls
-        const fontSmaller = document.getElementById("fontSmaller");
-        const fontReset = document.getElementById("fontReset");
-        const fontLarger = document.getElementById("fontLarger");
-
-        // Initialize font size
-        let fontSize = localStorage.getItem("fontSize") || 1.25;
-        contentDiv.style.fontSize = `${fontSize}rem`;
-
-        fontSmaller.addEventListener("click", () => {
-          fontSize = Math.max(1.0, fontSize - 0.1);
-          contentDiv.style.fontSize = `${fontSize}rem`;
-          localStorage.setItem("fontSize", fontSize);
-        });
-
-        fontReset.addEventListener("click", () => {
-          fontSize = 1.25;
-          contentDiv.style.fontSize = `${fontSize}rem`;
-          localStorage.setItem("fontSize", fontSize);
-        });
-
-        fontLarger.addEventListener("click", () => {
-          fontSize = Math.min(1.8, fontSize + 0.1);
-          contentDiv.style.fontSize = `${fontSize}rem`;
-          localStorage.setItem("fontSize", fontSize);
-        });
-
-        function updatePage() {
-          contentDiv.style.opacity = 0;
-          setTimeout(() => {
-            // Create formatted paragraphs
-            contentDiv.innerHTML = book.content[currentPage]
-              .split(/\n\n+/)
-              .map(para => `<p>${para}</p>`)
-              .join('');
-            
-            chapterIndicator.textContent = "Page " + (currentPage + 1);
-            const progress = ((currentPage + 1) / book.content.length) * 100;
-            progressBar.style.width = progress + "%";
-            progressText.textContent = `Progress: ${Math.round(progress)}%`;
-            contentDiv.style.opacity = 1;
-            
-            // Update bookmark indicator
-            bookmarkIndicator.classList.toggle("bookmark-active", currentPage > 0);
-            
-            // Save current page
-            localStorage.setItem("bookmark-" + bookIndex, currentPage);
-          }, 300);
-        }
-
-        updatePage();
-
-        document.getElementById("prevPage").addEventListener("click", () => {
-          if (currentPage > 0) {
-            currentPage--;
-            updatePage();
-          }
-        });
-
-        document.getElementById("nextPage").addEventListener("click", () => {
-          if (currentPage < book.content.length - 1) {
-            currentPage++;
-            updatePage();
-          }
-        });
+  fetch("books.json")
+    .then(response => response.json())
+    .then(books => {
+      const book = books[bookIndex];
+      if (!book) {
+        document.getElementById("bookContent").textContent = "Book not found.";
+        return;
       }
 
-      // Dark mode toggle
-      const darkModeToggle = document.getElementById('darkModeToggle');
-      darkModeToggle.addEventListener('change', function() {
-        document.body.classList.toggle('dark-mode');
-        document.body.classList.toggle('light-mode');
-        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+      // Set title and author
+      document.getElementById("bookTitle").textContent = book.title;
+      document.getElementById("bookAuthor").textContent = "By " + book.author;
+
+      // Retrieve saved bookmark for this book
+      let currentPage = localStorage.getItem("bookmark-" + bookIndex);
+      currentPage = currentPage !== null ? parseInt(currentPage) : 0;
+
+      const contentDiv = document.getElementById("bookContent");
+      const chapterIndicator = document.getElementById("chapterIndicator");
+      const progressBar = document.getElementById("progress");
+
+      function updatePage() {
+        contentDiv.style.opacity = 0;
+        setTimeout(() => {
+          contentDiv.textContent = book.content[currentPage];
+          chapterIndicator.textContent = "Page " + (currentPage + 1);
+          contentDiv.style.opacity = 1;
+          progressBar.style.width = ((currentPage + 1) / book.content.length) * 100 + "%";
+          localStorage.setItem("bookmark-" + bookIndex, currentPage);
+        }, 300);
+      }
+
+      updatePage();
+
+      document.getElementById("prevPage").addEventListener("click", () => {
+        if (currentPage > 0) {
+          currentPage--;
+          updatePage();
+        }
+      });
+
+      document.getElementById("nextPage").addEventListener("click", () => {
+        if (currentPage < book.content.length - 1) {
+          currentPage++;
+          updatePage();
+        }
+      });
+
+      document.getElementById("toggleMode").addEventListener("click", function () {
+        if (document.body.classList.contains("dark-mode")) {
+          document.body.classList.remove("dark-mode");
+          document.body.classList.add("light-mode");
+          this.textContent = "🌙 Dark Mode";
+          localStorage.setItem("theme", "light");
+        } else {
+          document.body.classList.remove("light-mode");
+          document.body.classList.add("dark-mode");
+          this.textContent = "☀ Light Mode";
+          localStorage.setItem("theme", "dark");
+        }
       });
 
       // Apply saved theme
-      if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-        document.body.classList.remove('light-mode');
-        darkModeToggle.checked = true;
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        document.body.classList.remove("light-mode");
+        document.getElementById("toggleMode").textContent = "☀ Light Mode";
       }
+    })
+    .catch(error => {
+      document.getElementById("bookContent").textContent = "Error loading book.";
+      console.error(error);
     });
+});
   </script>
 </body>
 </html>
