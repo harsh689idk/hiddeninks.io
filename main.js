@@ -27,11 +27,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   // Search filter remains unchanged
-  document.getElementById("searchBar").addEventListener("keyup", function () {
-    const searchText = this.value.toLowerCase();
-    document.querySelectorAll(".book").forEach(book => {
-      const title = book.querySelector("h3").textContent.toLowerCase();
-      book.style.display = title.includes(searchText) ? "block" : "none";
+  // In your main.js file, update the search function:
+document.getElementById("searchBar").addEventListener("keyup", function () {
+  const searchText = this.value.toLowerCase();
+  document.querySelectorAll(".book").forEach(book => {
+    const title = book.querySelector("h3").textContent.toLowerCase();
+    const author = book.querySelector("p").textContent.toLowerCase();
+    const display = title.includes(searchText) || author.includes(searchText);
+    book.style.display = display ? "block" : "none";
+  });
+});
     });
   });
 });
