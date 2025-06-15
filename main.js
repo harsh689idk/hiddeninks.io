@@ -8,12 +8,19 @@ document.addEventListener("DOMContentLoaded", function () {
         bookCard.classList.add("book");
         
         // Determine image source based on book title
-        const imageSource = book.title.toLowerCase().includes("shooting an elephant") 
-          ? "shootinganelephant.png" 
-          : "default.png";
+        let imageSource;
+        const lowerTitle = book.title.toLowerCase();
+        
+        if (lowerTitle.includes("shooting an elephant")) {
+          imageSource = "shootinganelephant.png";
+        } else if (lowerTitle.includes("in praise of idleness")) {
+          imageSource = "inpraiseofidleness.png";  // New image for this book
+        } else {
+          imageSource = "default.png";
+        }
 
         bookCard.innerHTML = `
-          <img src="${imageSource}" alt="Book Cover">
+          <img src="${imageSource}" alt="${book.title} Cover">
           <h3>${book.title}</h3>
           <p>${book.author}</p>
           <span class="genre">${book.genre}</span>
