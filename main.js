@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
           imageSource = "shootinganelephant.png";
         } else if (lowerTitle.includes("in praise of idleness")) {
           imageSource = "inpraiseofidleness.png";  // New image for this book
-        } else {
+        } else if (lowerTitle.includes("i prompted it, i own it— or do i?")) {
+          imageSource = "inpraiseofidleness.png";  // New image for this book
+        }else {
           imageSource = "default.png";
         }
 
