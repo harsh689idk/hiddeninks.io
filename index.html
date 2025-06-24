@@ -16,19 +16,43 @@
   <header>
     <div class="header-container">
       <a href="index.html" class="logo">HiddenInks.io</a>
+      
+      <div class="search-area">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchBar" placeholder="Search books">
+      </div>
+      
       <nav>
         <a href="index.html" class="active">Home</a>
         <a href="howtogetpublished.html">How to Get Published</a>
         <a href="about.html">About Us</a>
       </nav>
-      <div class="search-area">
-        <i class="fas fa-search"></i>
-        <input type="text" id="searchBar" placeholder="Search books">
-      </div>
     </div>
   </header>
 
-  
+  <main class="content">
+    <!-- Old Classics Section -->
+    <div class="book-section">
+      <h2 class="section-title">Old Classics</h2>
+      <div id="oldClassics" class="book-row"></div>
+    </div>
+    
+    <!-- Trending Now Section -->
+    <div class="book-section">
+      <div class="section-header">
+        <h2 class="section-title">Trending Now</h2>
+        <div class="section-subtitle">Most read this week</div>
+      </div>
+      <div id="trendingNow" class="book-row trending-row"></div>
+    </div>
+    
+    <!-- New Stock Section -->
+    <div class="book-section">
+      <h2 class="section-title">New Stock</h2>
+      <div id="newStock" class="book-row"></div>
+    </div>
+  </main>
+
   <footer>
     <div class="footer-content">
       <div class="social-links">
@@ -40,32 +64,7 @@
       <p class="copyright">&copy; 2025 HiddenInks.io. All Rights Reserved.</p>
     </div>
   </footer>
-<!-- ... existing HTML ... -->
 
-<main class="content">
-  <!-- Old Classics Section -->
-  <div class="book-section">
-    <h2 class="section-title">Old Classics</h2>
-    <div id="oldClassics" class="book-row"></div>
-  </div>
-  
-  <!-- Trending Now Section -->
-  <div class="book-section">
-    <div class="section-header">
-      <h2 class="section-title">Trending Now</h2>
-      <div class="section-subtitle">Most read this week</div>
-    </div>
-    <div id="trendingNow" class="book-row trending-row"></div>
-  </div>
-  
-  <!-- New Stock Section -->
-  <div class="book-section">
-    <h2 class="section-title">New Stock</h2>
-    <div id="newStock" class="book-row"></div>
-  </div>
-</main>
-
-<!-- ... rest of HTML ... -->
   <script src="main.js"></script>
 </body>
 </html>
