@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
     bookCard.innerHTML = `
       ${numberElement}
       <div class="book-img-container">
-        <img src="${imageSource}" alt="${book.title} Cover">
+        <img src="${imageSource}" alt="${book.title} Cover" loading="lazy">
       </div>
       <div class="book-content">
         <h3>${book.title}</h3>
