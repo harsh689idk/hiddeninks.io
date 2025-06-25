@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | The Weekly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --card-bg: #1E1E1E;
+            --text-white: #FFFFFF;
+            --text-light: #E0E0E0;
+            --accent-purple: #9C27B0;
+            --accent-pink: #FF4081;
+            --accent-teal: #00BCD4;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(156, 39, 176, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 188, 212, 0.15) 0%, transparent 50%);
+            overflow: hidden;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .coming-soon {
+            font-family: 'Bungee', cursive;
+            font-size: 72px;
+            line-height: 1;
+            margin: 30px 0;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, var(--accent-pink), var(--accent-teal), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(255, 64, 129, 0.3);
+            position: relative;
+            animation: bounce 2s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-15px); }
+        }
+
+        .subtext {
+            font-size: 18px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+        }
+
+        .notify-form {
+            display: flex;
+            gap: 10px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .notify-input {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 12px 20px;
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .notify-input:focus {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 0 3px rgba(255, 64, 129, 0.3);
+        }
+
+        .notify-button {
+            background: linear-gradient(45deg, var(--accent-pink), var(--accent-purple));
+            color: var(--text-white);
+            border: none;
+            border-radius: 50px;
+            padding: 0 25px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notify-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
+        }
+
+        .emoji-decoration {
+            position: absolute;
+            font-size: 24px;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .emoji-1 { top: 15%; left: 10%; animation-delay: 0s; }
+        .emoji-2 { top: 25%; right: 15%; animation-delay: 1s; }
+        .emoji-3 { bottom: 20%; left: 20%; animation-delay: 2s; }
+        .emoji-4 { bottom: 30%; right: 10%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @media (max-width: 768px) {
+            .coming-soon {
+                font-size: 48px;
+            }
+            
+            .notify-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji-decoration emoji-1">🚀</div>
+    <div class="emoji-decoration emoji-2">✨</div>
+    <div class="emoji-decoration emoji-3">🎉</div>
+    <div class="emoji-decoration emoji-4">🔥</div>
+
+    <div class="logo">THE WEEKLY</div>
+    <h1 class="coming-soon">Coming Soon</h1>
+    <p class="subtext">We're cooking up something fresh and exciting for Gen Z! Stay tuned for the most vibrant news experience you've ever seen.</p>
+    
+    <form class="notify-form">
+        <input type="email" class="notify-input" placeholder="Your email address" required>
+        <button type="submit" class="notify-button">Notify Me</button>
+    </form>
+
+    <script>
+        // Form submission
+        document.querySelector('.notify-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert(`Thanks! We'll notify you at ${email} when we launch.`);
+            this.querySelector('input').value = '';
+        });
+    </script>
+</body>
+</html>
