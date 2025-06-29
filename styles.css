@@ -1,5 +1,4 @@
-
-    /* ---------- Global Reset & Base Styles ---------- */
+/* ---------- Global Reset & Base Styles ---------- */
     * {
       margin: 0;
       padding: 0;
@@ -165,9 +164,11 @@
       font-size: 28px;
     }
 
+    /* Main Navigation */
     nav {
       display: flex;
       gap: 25px;
+      align-items: center;
     }
 
     nav a {
@@ -208,6 +209,70 @@
       display: flex;
       align-items: center;
       gap: 20px;
+    }
+
+    /* Mobile Menu Button */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #123458;
+      padding: 5px;
+    }
+
+    .dark-mode .menu-toggle {
+      color: #D4C9BE;
+    }
+
+    /* Mobile Menu Styles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+        order: 1;
+      }
+      
+      nav {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: #D4C9BE;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 15px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        z-index: 99;
+      }
+      
+      .dark-mode nav {
+        background-color: #1A1A1A;
+      }
+      
+      nav.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      
+      .header-container {
+        justify-content: space-between;
+      }
+      
+      .logo {
+        margin-right: 0;
+        order: 2;
+      }
+      
+      .search-area {
+        order: 3;
+        width: 100%;
+        margin-top: 15px;
+      }
     }
 
     /* ---------- Search Area (Used on Homepage) ---------- */
@@ -752,24 +817,28 @@
 
     @media (max-width: 768px) {
       .header-container {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         gap: 15px;
       }
       
       .logo {
         margin-right: 0;
-        margin-bottom: 10px;
+        margin-bottom: 0;
+        order: 2;
+        flex-grow: 1;
+        text-align: center;
       }
       
       .search-area {
+        order: 3;
         margin-top: 15px;
         align-self: center;
         max-width: 100%;
       }
       
       nav {
-        margin-top: 15px;
+        margin-top: 0;
       }
       
       .book-grid {
