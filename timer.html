@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reading Time Tracker | hiddeninks.in</title>
+  <title>Reading Time Tracker | hiddenink.in</title>
   <!-- Ubuntu font -->
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
@@ -43,6 +43,35 @@
       color: #D4C9BE;
     }
 
+    .dark-mode .time-tracker-container {
+      background-color: #1A1A1A;
+    }
+
+    .dark-mode .time-tracker-title {
+      color: #D4C9BE;
+    }
+
+    .dark-mode .time-display {
+      color: #D4C9BE;
+    }
+
+    .dark-mode .time-label span {
+      color: #999;
+    }
+
+    .dark-mode .info-text {
+      color: #999;
+    }
+
+    .dark-mode footer {
+      background-color: #1A1A1A;
+      color: #D4C9BE;
+    }
+
+    .dark-mode .social-links a {
+      color: #D4C9BE;
+    }
+
     /* ---------- Header ---------- */
     header {
       background-color: #D4C9BE;
@@ -51,11 +80,6 @@
       position: sticky;
       top: 0;
       z-index: 100;
-    }
-
-    .dark-mode header {
-      background-color: #1A1A1A;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     .header-container {
@@ -76,10 +100,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-    }
-
-    .logo i {
-      font-size: 28px;
     }
 
     nav {
@@ -110,15 +130,6 @@
     nav a:hover::after,
     nav a.active::after {
       width: 100%;
-    }
-
-    nav a:hover,
-    nav a.active {
-      color: #123458;
-    }
-
-    .dark-mode nav a::after {
-      background-color: #D4C9BE;
     }
 
     /* Dark Mode Toggle */
@@ -199,20 +210,12 @@
       max-width: 600px;
     }
 
-    .dark-mode .time-tracker-container {
-      background-color: #1A1A1A;
-    }
-
     .time-tracker-title {
       font-size: 2.5rem;
       color: #123458;
       margin-bottom: 30px;
       position: relative;
       padding-bottom: 15px;
-    }
-
-    .dark-mode .time-tracker-title {
-      color: #D4C9BE;
     }
 
     .time-tracker-title::after {
@@ -227,20 +230,12 @@
       border-radius: 2px;
     }
 
-    .dark-mode .time-tracker-title::after {
-      background: #D4C9BE;
-    }
-
     .time-display {
       font-size: 3.5rem;
       font-weight: 700;
       color: #123458;
       margin: 30px 0;
       font-family: monospace;
-    }
-
-    .dark-mode .time-display {
-      color: #D4C9BE;
     }
 
     .time-label {
@@ -257,19 +252,11 @@
       text-align: center;
     }
 
-    .dark-mode .time-label span {
-      color: #999;
-    }
-
     .info-text {
       margin-top: 30px;
       font-size: 1rem;
       color: #555;
       line-height: 1.6;
-    }
-
-    .dark-mode .info-text {
-      color: #999;
     }
 
     /* ---------- Footer ---------- */
@@ -279,11 +266,6 @@
       background-color: #D4C9BE;
       color: #123458;
       font-size: 15px;
-    }
-
-    .dark-mode footer {
-      background-color: #1A1A1A;
-      color: #D4C9BE;
     }
 
     .footer-content {
@@ -304,19 +286,6 @@
       color: #123458;
       font-size: 20px;
       transition: transform 0.3s ease;
-    }
-
-    .social-links a:hover {
-      transform: translateY(-3px);
-      color: #0D2B4E;
-    }
-
-    .dark-mode .social-links a {
-      color: #D4C9BE;
-    }
-
-    .dark-mode .social-links a:hover {
-      color: #F1EFEC;
     }
 
     .copyright {
@@ -384,8 +353,8 @@
         <span>Seconds</span>
       </div>
       <p class="info-text">
-        This tracker records the total time you've spent on HiddenInks.io across all pages. 
-        Your reading time is saved automatically and will continue counting even when you navigate to other pages.
+        This tracker records the total time you've spent on hiddenink.in across all pages. 
+        Your reading time is saved automatically and will continue counting even when you close the browser.
       </p>
     </div>
   </main>
@@ -397,14 +366,13 @@
         <a href="#"><i class="fab fa-facebook"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
       </div>
-      <p class="copyright">&copy; 2025 HiddenInks.io. All Rights Reserved.</p>
+      <p class="copyright">&copy; 2025 hiddenink.in. All Rights Reserved.</p>
     </div>
   </footer>
 
   <script>
-    // This script should be included on ALL pages of your website
     document.addEventListener("DOMContentLoaded", function() {
-      // Dark mode toggle
+      // Dark Mode Toggle
       const darkModeToggle = document.getElementById('darkModeToggle');
       const body = document.body;
       
@@ -424,108 +392,94 @@
         }
       });
       
-      // Reading time tracker - Global for all pages
-      let seconds = 0;
-      let minutes = 0;
-      let hours = 0;
+      // Enhanced Reading Time Tracker
+      const timeDisplay = document.getElementById('timeDisplay');
+      let totalSeconds = 0;
       let timer;
-      const timeDisplay = document.getElementById('timeDisplay') || { textContent: '' };
       
-      // Load saved time from localStorage
-      function loadSavedTime() {
-        const savedTime = localStorage.getItem('readingTime');
-        if (savedTime) {
-          const timeArray = savedTime.split(':').map(Number);
-          hours = timeArray[0];
-          minutes = timeArray[1];
-          seconds = timeArray[2];
-          updateDisplay();
+      // Initialize the tracker
+      function initTimeTracker() {
+        // Load saved total time
+        const savedSeconds = localStorage.getItem('totalReadingSeconds');
+        if (savedSeconds) {
+          totalSeconds = parseInt(savedSeconds);
         }
         
-        // Also load last active timestamp if exists
-        const lastActive = localStorage.getItem('lastActiveTime');
+        // Calculate time passed since last visit
+        const lastActive = localStorage.getItem('lastActiveTimestamp');
         if (lastActive) {
-          const inactiveSeconds = Math.floor((Date.now() - parseInt(lastActive)) / 1000);
-          if (inactiveSeconds > 0 && inactiveSeconds < 60 * 60 * 4) { // Max 4 hours of inactive time
-            addTime(inactiveSeconds);
+          const now = Date.now();
+          const secondsPassed = Math.floor((now - parseInt(lastActive)) / 1000);
+          
+          // Only add time if reasonable (less than 24 hours)
+          if (secondsPassed > 0 && secondsPassed < 86400) {
+            totalSeconds += secondsPassed;
+            localStorage.setItem('totalReadingSeconds', totalSeconds);
           }
         }
+        
+        // Display initial time
+        updateTimeDisplay();
+        
+        // Start counting
+        startTimer();
+        
+        // Save current timestamp
+        updateLastActiveTimestamp();
+        
+        // Set up periodic saving
+        setInterval(saveReadingProgress, 30000);
       }
       
-      // Update the time display if on tracker page
-      function updateDisplay() {
-        if (timeDisplay.textContent !== undefined) {
-          const formattedHours = hours.toString().padStart(2, '0');
-          const formattedMinutes = minutes.toString().padStart(2, '0');
-          const formattedSeconds = seconds.toString().padStart(2, '0');
-          timeDisplay.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-        }
-      }
-      
-      // Add time in seconds
-      function addTime(additionalSeconds) {
-        seconds += additionalSeconds;
-        
-        while (seconds >= 60) {
-          seconds -= 60;
-          minutes++;
-        }
-        
-        while (minutes >= 60) {
-          minutes -= 60;
-          hours++;
-        }
-        
-        updateDisplay();
-        saveTime();
-      }
-      
-      // Start the timer (only increments when page is active)
+      // Start the timer
       function startTimer() {
-        if (!timer) {
-          timer = setInterval(function() {
-            addTime(1);
-          }, 1000);
-        }
+        timer = setInterval(function() {
+          totalSeconds++;
+          updateTimeDisplay();
+        }, 1000);
       }
       
-      // Save current time to localStorage
-      function saveTime() {
-        localStorage.setItem('readingTime', `${hours}:${minutes}:${seconds}`);
-        localStorage.setItem('lastActiveTime', Date.now().toString());
+      // Update the time display
+      function updateTimeDisplay() {
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        
+        timeDisplay.textContent = 
+          `${hours.toString().padStart(2, '0')}:` +
+          `${minutes.toString().padStart(2, '0')}:` +
+          `${seconds.toString().padStart(2, '0')}`;
       }
       
-      // Handle page visibility changes
+      // Save reading progress
+      function saveReadingProgress() {
+        localStorage.setItem('totalReadingSeconds', totalSeconds);
+        updateLastActiveTimestamp();
+      }
+      
+      // Update the last active timestamp
+      function updateLastActiveTimestamp() {
+        localStorage.setItem('lastActiveTimestamp', Date.now().toString());
+      }
+      
+      // Set up event listeners for page visibility changes
       document.addEventListener('visibilitychange', function() {
         if (document.hidden) {
-          // Page is hidden, save last active time
-          localStorage.setItem('lastActiveTime', Date.now().toString());
+          // Page is hidden, save progress
+          saveReadingProgress();
         } else {
-          // Page is visible again, check if we need to add inactive time
-          const lastActive = localStorage.getItem('lastActiveTime');
-          if (lastActive) {
-            const inactiveSeconds = Math.floor((Date.now() - parseInt(lastActive)) / 1000);
-            if (inactiveSeconds > 0 && inactiveSeconds < 60 * 60 * 4) { // Max 4 hours of inactive time
-              addTime(inactiveSeconds);
-            }
-          }
-          // Update last active time
-          localStorage.setItem('lastActiveTime', Date.now().toString());
+          // Page is visible again, update timestamp
+          updateLastActiveTimestamp();
         }
       });
       
-      // Save time when page is about to unload
+      // Save when page is unloading
       window.addEventListener('beforeunload', function() {
-        saveTime();
+        saveReadingProgress();
       });
       
-      // Initialize
-      loadSavedTime();
-      startTimer();
-      localStorage.setItem('lastActiveTime', Date.now().toString());
-      
-      // Periodically save time (every minute) in case browser closes unexpectedly
-      setInterval(saveTime, 60000);
+      // Initialize the tracker
+      initTimeTracker();
     });
   </script>
 </body>
