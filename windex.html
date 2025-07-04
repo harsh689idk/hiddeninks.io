@@ -1,10 +1,9 @@
-<!-- read.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reading Article | The Literary Journal</title>
+    <title>The Literary Journal</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -114,11 +113,120 @@
             border-radius: 2px;
         }
 
+        /* Main Content - Homepage */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 5%;
+            min-height: 70vh;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--light-beige);
+        }
+
+        .intro h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.8rem;
+            color: var(--deep-blue);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            color: var(--medium-blue);
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--soft-shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid var(--light-beige);
+            position: relative;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(27, 60, 83, 0.2);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--light-beige);
+        }
+
+        .article-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: var(--deep-blue);
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+        }
+
+        .article-author {
+            font-style: italic;
+            color: var(--medium-blue);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .article-date {
+            font-size: 0.9rem;
+            color: var(--medium-blue);
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(210, 193, 182, 0.4);
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--medium-blue);
+            color: var(--cream);
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
         /* Article Page Styles */
         .article-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 3rem 5% 4rem;
+            padding: 2rem 0 4rem;
         }
 
         .article-header {
@@ -268,6 +376,10 @@
                 display: flex;
             }
             
+            .intro h2 {
+                font-size: 2.2rem;
+            }
+            
             .article-header h1 {
                 font-size: 2.2rem;
             }
@@ -278,6 +390,14 @@
         }
 
         @media (max-width: 480px) {
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-title {
+                font-size: 1.4rem;
+            }
+            
             .logo {
                 font-size: 1.8rem;
             }
@@ -296,7 +416,7 @@
             <a href="index.html" class="logo">The <span>Literary</span> Journal</a>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="#">Archive</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Submit</a></li>
@@ -310,10 +430,17 @@
         </div>
     </header>
 
-    <!-- Article Content -->
-    <div class="article-container" id="articleContainer">
-        <!-- Article content will be loaded dynamically -->
-    </div>
+    <!-- Main Content - Homepage -->
+    <main id="mainContent">
+        <div class="intro">
+            <h2>Thoughtful Reviews & Literary Essays</h2>
+            <p>Weekly insights on contemporary works and timeless classics</p>
+        </div>
+        
+        <div class="articles-grid" id="articlesGrid">
+            <!-- Articles will be loaded via JavaScript -->
+        </div>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -464,43 +591,32 @@
         ];
 
         // DOM Elements
-        const articleContainer = document.getElementById('articleContainer');
+        const articlesGrid = document.getElementById('articlesGrid');
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.querySelector('.nav-links');
 
-        // Get article ID from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const articleId = parseInt(urlParams.get('id'));
-
-        // Load article
-        function loadArticle() {
-            const article = articles.find(a => a.id === articleId);
+        // Render articles on homepage
+        function renderArticles() {
+            articlesGrid.innerHTML = '';
             
-            if (article) {
-                articleContainer.innerHTML = `
-                    <div class="article-header">
-                        <h1>${article.title}</h1>
-                        <div class="article-meta">
-                            ${article.author ? `<span>By ${article.author}</span>` : ''}
-                            <span>${article.date}</span>
-                            <span>${article.category}</span>
-                        </div>
-                        <img src="${article.image}" alt="${article.title}" class="article-image-large">
-                    </div>
-                    <div class="article-body">
-                        ${article.content}
-                        <a href="index.html" class="back-link">← Back to all articles</a>
+            articles.forEach(article => {
+                const articleCard = document.createElement('article');
+                articleCard.className = 'article-card';
+                articleCard.innerHTML = `
+                    <div class="category-tag">${article.category}</div>
+                    <img src="${article.image}" alt="${article.title}" class="article-image">
+                    <div class="article-content">
+                        <h3 class="article-title">${article.title}</h3>
+                        ${article.author ? `<p class="article-author">By ${article.author}</p>` : ''}
+                        <p class="article-date">${article.date}</p>
                     </div>
                 `;
-            } else {
-                articleContainer.innerHTML = `
-                    <div class="article-header">
-                        <h1>Article Not Found</h1>
-                        <p>The requested article could not be found.</p>
-                        <a href="index.html" class="back-link">← Back to all articles</a>
-                    </div>
-                `;
-            }
+                
+                articleCard.addEventListener('click', () => {
+                    window.location.href = `wread.html?id=${article.id}`;
+                });
+                articlesGrid.appendChild(articleCard);
+            });
         }
 
         // Toggle mobile menu
@@ -510,7 +626,7 @@
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', () => {
-            loadArticle();
+            renderArticles();
             
             // Event listeners
             menuToggle.addEventListener('click', toggleMobileMenu);
