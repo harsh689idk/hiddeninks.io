@@ -37,6 +37,8 @@
               imageSource = "inpraiseofidleness.png";  // New image for this book
             } else if (lowerTitle.includes("i prompted it, i own it— or do i?")) {
               imageSource = "kabirmehra1.png";  // New image for this book
+            } else if (lowerTitle.includes("notes from underground")) {
+              imageSource = "notesfromunderground.png";  // New image for this book
             } else {
               imageSource = "default.png";
             }
