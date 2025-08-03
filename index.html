@@ -1,307 +1,209 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6110138651858978"
-     crossorigin="anonymous"></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>hiddenink.in – A Platform for New Authors to Publish Their Books</title>
-  <!-- Ubuntu font -->
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- Inter font for loading screen -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome for menu icon -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<title>HiddenInk – AI Coding Platform</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <style>
-    /* ---------- Exciting Text Loading Animation ---------- */
-    .loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #F1EFEC;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      font-family: 'Inter', sans-serif;
-      overflow: hidden;
-    }
-    .dark-mode .loading-screen {
-      background-color: #030303;
-    }
-    .loading-text {
-      font-size: 5vw;
-      font-weight: 700;
-      letter-spacing: 8px;
-      text-transform: uppercase;
-      color: #123458;
-      display: flex;
-      gap: 15px;
-    }
-    .dark-mode .loading-text {
-      color: #D4C9BE;
-    }
-    .char {
-      transform: translateY(100px);
-      opacity: 0;
-      display: inline-block;
-      animation:
-        riseUp 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-        float 3s ease-in-out infinite;
-    }
-    @keyframes riseUp {
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-    .dark-mode .char {
-      animation:
-        riseUp 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-        float 3s ease-in-out infinite,
-        darkPulse 3s ease-in-out infinite;
-    }
-    @keyframes darkPulse {
-      0%, 100% { color: #D4C9BE; }
-      50% { color: #123458; }
-    }
-    .ink-splat {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(18, 52, 88, 0.3) 0%, transparent 70%);
-      border-radius: 50%;
-      filter: blur(30px);
-      opacity: 0;
-      animation: fadeInOut 4s infinite;
-    }
-    @keyframes fadeInOut {
-      0%, 100% { opacity: 0; transform: scale(0.5); }
-      50% { opacity: 0.4; transform: scale(1); }
-    }
-    .fade-out {
-      animation: fadeOut 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-    @keyframes fadeOut {
-      to { opacity: 0; }
-    }
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-    /* Your existing carousel CSS */
-    .carousel-wrapper {
-      position: relative;
-      max-width: 960px;
-      margin: 0 auto 50px;
-      overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-    }
-    .carousel {
-      display: flex;
-      transition: transform 0.6s ease-in-out;
-    }
-    .carousel-slide {
-      min-width: 100%;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-    }
-    .carousel-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .carousel-slide img:hover {
-      transform: scale(1.03);
-    }
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      padding: 10px 14px;
-      font-size: 22px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 10;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    .carousel-btn:hover {
-      background-color: rgba(0, 0, 0, 0.7);
-      transform: translateY(-50%) scale(1.1);
-    }
-    .carousel-btn.prev {
-      left: 15px;
-    }
-    .carousel-btn.next {
-      right: 15px;
-    }
-    .carousel-dots {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      z-index: 5;
-    }
-    .carousel-dots .dot {
-      height: 10px;
-      width: 10px;
-      background-color: rgba(255, 255, 255, 0.5);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .carousel-dots .dot.active {
-      background-color: white;
-    }
-    @media (max-width: 768px) {
-      .carousel-btn {
-        font-size: 18px;
-        padding: 8px 12px;
-      }
-      .carousel-dots .dot {
-        height: 8px;
-        width: 8px;
-      }
-    }
-  </style>
+<!-- Anime.js (8 kB gzip) -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+
+<style>
+/* ─────── Theme Tokens ─────── */
+:root{
+  --bg:#000;                /* black core */
+  --bg-grid:#0b0b0b;        /* deep gray grid dots */
+  --fg:#e8ffec;             /* main text */
+  --green:#11ff63;          /* neon green */
+  --green-soft:rgba(17,255,99,.13);
+  --radius:18px;
+  --shadow:0 16px 38px rgba(17,255,99,.18);
+  --font:'Space Grotesk',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:var(--font);color:var(--fg)}
+html,body{height:100%;background:var(--bg);overflow-x:hidden}
+
+/* ───── Global Matrix-Dot Grid ───── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background:radial-gradient(var(--bg-grid) 1px,transparent 1px);
+  background-size:46px 46px;animation:gridShift 90s linear infinite;
+}
+@keyframes gridShift{to{background-position:2200px 1600px}}
+
+/* ───── Code-Rain Accent Lines ───── */
+body::after{
+  content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:linear-gradient(180deg,transparent 90%,var(--green-soft) 95%);
+  background-size:100% 5px;opacity:.12;animation:scan 8s linear infinite;
+}
+@keyframes scan{to{background-position-y:5px}}
+
+/* ───── Hero Section ───── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  align-items:center;text-align:center;padding:0 1.5rem;position:relative;overflow:hidden;
+}
+.hero h1{
+  font-size:clamp(3.2rem,7vw,5.4rem);font-weight:700;letter-spacing:-.5px;
+  background:linear-gradient(130deg,var(--green),#b0ffcb 40%,var(--green) 70%);
+  -webkit-background-clip:text;color:transparent;
+}
+.hero p{max-width:600px;margin-top:1.2rem;font-size:1.15rem;opacity:.92}
+.cta{
+  margin-top:2.4rem;padding:1rem 2.5rem;border:none;border-radius:var(--radius);
+  background:var(--green);color:#001b0a;font-weight:600;font-size:1rem;
+  box-shadow:var(--shadow);cursor:pointer;
+  transition:transform .24s,box-shadow .24s;
+}
+.cta:hover{transform:translateY(-5px);box-shadow:0 22px 55px rgba(17,255,99,.35)}
+
+/* Pulsing concentric rings */
+.ring{
+  position:absolute;border:2px solid var(--green-soft);border-radius:50%;
+  width:680px;height:680px;top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:ringPulse 7s ease-in-out infinite;
+}
+@keyframes ringPulse{
+  0%,100%{transform:translate(-50%,-50%) scale(.9);opacity:.45}
+  50%{transform:translate(-50%,-50%) scale(1.1);opacity:.18}
+}
+
+/* ───── Feature Grid ───── */
+.features{
+  display:grid;gap:2rem;padding:5.5rem 1.5rem;max-width:1220px;margin:auto;
+}
+@media(min-width:760px){.features{grid-template-columns:repeat(3,1fr)}}
+.card{
+  background:#0d0d0d;padding:2.2rem;border-radius:var(--radius);
+  border:1px solid var(--green-soft);box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.card i{font-size:2.1rem;margin-bottom:1.2rem;color:var(--green)}
+.card::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 120% -20%,rgba(17,255,99,.25),transparent 60%);
+  transform:translateX(-100%);animation:glide 8s infinite linear;
+}
+@keyframes glide{to{transform:translateX(100%)}}
+
+/* ───── Code Editor Demo ───── */
+.editor-wrap{background:#020202;padding:5.8rem 1.5rem}
+.editor{
+  margin:auto;width:min(95%,960px);background:#0f0f0f;border-radius:var(--radius);
+  box-shadow:var(--shadow);overflow:hidden;font-family:Menlo,monospace;font-size:.9rem;
+}
+.tabs{display:flex;background:#090909}
+.tab{padding:.6rem 1rem;font-size:.8rem;color:#7de8ab;border-right:1px solid #151515}
+.tab.active{background:#0f0f0f;color:var(--green)}
+pre{padding:1.55rem;line-height:1.58;color:#d3ffdd;overflow-x:auto}
+.k{color:#11ff63;font-weight:600}.fn{color:#55ffb0}.str{color:#c0ff95}
+.num{color:#ffd18f}.com{color:#5fa775;font-style:italic}
+
+/* ───── Footer ───── */
+footer{
+  background:#000;border-top:1px solid var(--green-soft);
+  text-align:center;padding:3rem 1.5rem;font-size:.85rem;opacity:.8;
+}
+
+/* ───── Delayed-Reveal Hidden State ───── */
+.delayed-reveal{opacity:0;transform:translateY(30px);}
+</style>
 </head>
 <body>
-  <!-- Exciting Text Loading Animation -->
-  <div class="loading-screen" id="loadingScreen">
-    <div class="ink-splat" style="top:20%; left:15%; animation-delay:0.5s"></div>
-    <div class="ink-splat" style="bottom:25%; right:20%; animation-delay:1s"></div>
-    <div class="loading-text" id="loadingText">HIDDENINKS</div>
+
+<!-- Magnetic Cursor Halo -->
+<svg id="halo" width="140" height="140" viewBox="0 0 140 140"
+     style="position:fixed;pointer-events:none;opacity:.18;z-index:2">
+  <circle cx="70" cy="70" r="69" fill="none" stroke="var(--green)" stroke-width="2"/>
+</svg>
+
+<!-- ═════ HERO ═════ -->
+<section class="hero">
+  <div class="ring"></div>
+  <h1>HiddenInk</h1>
+  <p>The <strong>AI-powered</strong> collaborative code editor engineered for high-velocity teams.</p>
+  <a href="mailto:inkshidden@gmail.com" class="cta">Partner with us</a>
+</section>
+
+<!-- ═════ FEATURES ═════ -->
+<section class="features">
+  <article class="card"><i class="fa-solid fa-sparkles"></i>
+    <h3>AI Pair-Pro</h3><p>Context-aware completions, refactors & tests tuned to **your** repo.</p>
+  </article>
+  <article class="card"><i class="fa-solid fa-users-line"></i>
+    <h3>Real-time Collab</h3><p>Live cursors, voice huddles & shared terminals—zero latency.</p>
+  </article>
+  <article class="card"><i class="fa-solid fa-shield-halved"></i>
+    <h3>Security First</h3><p>SOC-2 pipelines, on-prem models & field-level encryption keep IP safe.</p>
+  </article>
+  <article class="card"><i class="fa-solid fa-gauge-high"></i>
+    <h3>Turbo Core</h3><p>Wasm engine opens 20,000-file monorepos **5× faster** than VS Code.</p>
+  </article>
+  <article class="card"><i class="fa-solid fa-wand-magic-sparkles"></i>
+    <h3>Self-Healing</h3><p>Bots auto-patch deps, fix lints & raise architectural PRs.</p>
+  </article>
+  <article class="card"><i class="fa-solid fa-bolt-lightning"></i>
+    <h3>Offline-First</h3><p>Full parity without internet; sync when back online—perfect for secure labs.</p>
+  </article>
+</section>
+
+<!-- ═════ CODE DEMO ═════ -->
+<section class="editor-wrap">
+  <div class="editor">
+    <div class="tabs">
+      <div class="tab active">app.ts</div><div class="tab">utils/date.ts</div><div class="tab">README.md</div>
+    </div>
+<pre>
+<span class="com">// HiddenInk AI session</span>
+
+<span class="k">async</span> <span class="k">function</span> <span class="fn">askHiddenInk</span>(question: <span class="str">string</span>) {
+  <span class="k">return</span> <span class="fn">AI.complete</span>({
+    prompt: question,
+    maxTokens: <span class="num">256</span>
+  });
+}
+
+<span class="com">// Generate tests instantly</span>
+<span class="k">await</span> <span class="fn">askHiddenInk</span>(<span class="str">"Generate unit tests for utils/date.ts"</span>)
+  .<span class="fn">then</span>(res => console.<span class="fn">log</span>(res))
+  .<span class="fn">catch</span>(err => console.<span class="fn">error</span>(err));
+</pre>
   </div>
+</section>
 
-  <header>
-    <div class="header-container">
-      <button class="menu-toggle" aria-label="Toggle menu">
-        <i class="fas fa-bars"></i>
-      </button>
-      <a href="index.html" class="logo">hiddenink.in</a>
-      <nav>
-        <a href="index.html" class="active">Home</a>
-        <a href="howtogetpublished.html">How to Get Published</a>
-        <a href="about.html">About Us</a>
-        <a href="windex.html">The Weekly</a>
-        <a href="timer.html">Read Count</a>
-      </nav>
-      <div class="search-area">
-        <i class="fas fa-search"></i>
-        <input type="text" id="searchBar" placeholder="Search books">
-      </div>
-    </div>
-  </header>
+<!-- ═════ FOOTER ═════ -->
+<footer>© 2025 HiddenInk · All rights reserved</footer>
 
-  <main class="content">
-    <!-- 🌟 Carousel Section Start -->
-    <div class="carousel-wrapper">
-      <div class="carousel">
-        <div class="carousel-slide"><img src="carousel1.png" alt="Slide 1"></div>
-        <div class="carousel-slide"><img src="carousel2.png" alt="Slide 2"></div>
-        <div class="carousel-slide"><img src="carousel.png" alt="Slide 3"></div>
-      </div>
-      <button class="carousel-btn prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
-      <button class="carousel-btn next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
-      <div class="carousel-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-    </div>
-    <!-- 🌟 Carousel Section End -->
+<!-- ───────── JavaScript FX ───────── -->
+<script>
+/* Magnetic halo */
+const halo=document.getElementById('halo');
+window.addEventListener('mousemove',e=>{
+  halo.style.transform=`translate(${e.clientX-70}px,${e.clientY-70}px)`;
+});
 
-    <h2>Book Collection</h2>
-    <div id="bookGrid" class="book-grid">
-      <!-- Book cards loaded via main.js -->
-    </div>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 HiddenInks.io. All Rights Reserved.</p>
-  </footer>
-
-  <!-- Loading Screen Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const loadingScreen = document.getElementById('loadingScreen');
-      const loadingText = document.getElementById('loadingText');
-      const text = "HIDDENINKS";
-
-      loadingText.innerHTML = text.split('').map((char, i) =>
-        `<span class="char" style="animation-delay:${i * 0.1}s">${char}</span>`
-      ).join('');
-
-      for (let i = 0; i < 4; i++) {
-        const splat = document.createElement('div');
-        splat.className = 'ink-splat';
-        splat.style.left = `${10 + Math.random() * 80}%`;
-        splat.style.top = `${10 + Math.random() * 80}%`;
-        splat.style.animationDelay = `${Math.random() * 2}s`;
-        loadingScreen.appendChild(splat);
-      }
-
-      setTimeout(() => {
-        loadingScreen.classList.add('fade-out');
-        setTimeout(() => {
-          loadingScreen.style.display = 'none';
-          // Now load your books.json and kick off main.js as usual
-          fetch("books.json")
-            .then(response => response.json())
-            .then(books => {
-              // your existing book loading logic
-            });
-        }, 800);
-      }, 3500);
+/* Delayed-reveal cascade */
+document.addEventListener("DOMContentLoaded",()=>{
+  const targets=document.querySelectorAll(
+    "header h1, header p, .cta, .features .card, .editor-wrap, footer"
+  );
+  targets.forEach(el=>el.classList.add("delayed-reveal"));
+  setTimeout(()=>{
+    anime({
+      targets:".delayed-reveal",
+      opacity:[0,1],
+      translateY:[30,0],
+      delay:(el,i)=>i*120,
+      duration:800,
+      easing:"easeOutExpo"
     });
-  </script>
-
-  <script src="main.js"></script>
-
-  <!-- Carousel Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const slides = document.querySelectorAll(".carousel-slide");
-      const nextBtn = document.querySelector(".carousel-btn.next");
-      const prevBtn = document.querySelector(".carousel-btn.prev");
-      const dots = document.querySelectorAll(".carousel-dots .dot");
-      const carousel = document.querySelector(".carousel");
-      let currentIndex = 0;
-
-      const goToSlide = (index) => {
-        carousel.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach(dot => dot.classList.remove("active"));
-        dots[index].classList.add("active");
-        currentIndex = index;
-      };
-
-      nextBtn.addEventListener("click", () => {
-        goToSlide((currentIndex + 1) % slides.length);
-      });
-      prevBtn.addEventListener("click", () => {
-        goToSlide((currentIndex - 1 + slides.length) % slides.length);
-      });
-      dots.forEach((dot, index) => {
-        dot.addEventListener("click", () => goToSlide(index));
-      });
-
-      setInterval(() => {
-        goToSlide((currentIndex + 1) % slides.length);
-      }, 6000);
-    });
-  </script>
+  },600); // start after 0.6 s
+});
+</script>
 </body>
 </html>
