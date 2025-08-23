@@ -1,209 +1,718 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>HiddenInk – AI Coding Platform</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiddenInk | Premium Creative Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #141213;
+            --secondary: #1E1C1D;
+            --accent: #7B68EE;
+            --accent-light: #9370DB;
+            --accent-dark: #5B4BB9;
+            --text: #FFFFFF;
+            --text-secondary: #D8D8D8;
+            --glass-light: rgba(255, 255, 255, 0.1);
+            --glass-medium: rgba(255, 255, 255, 0.07);
+            --glass-dark: rgba(0, 0, 0, 0.3);
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+        }
 
-<!-- Fonts & Icons -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- Anime.js (8 kB gzip) -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle, rgba(20, 18, 19, 1) 0%, rgba(148, 187, 233, 1) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
 
-<style>
-/* ─────── Theme Tokens ─────── */
-:root{
-  --bg:#000;                /* black core */
-  --bg-grid:#0b0b0b;        /* deep gray grid dots */
-  --fg:#e8ffec;             /* main text */
-  --green:#11ff63;          /* neon green */
-  --green-soft:rgba(17,255,99,.13);
-  --radius:18px;
-  --shadow:0 16px 38px rgba(17,255,99,.18);
-  --font:'Space Grotesk',sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0;font-family:var(--font);color:var(--fg)}
-html,body{height:100%;background:var(--bg);overflow-x:hidden}
+        h1, h2, h3, h4 {
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
 
-/* ───── Global Matrix-Dot Grid ───── */
-body::before{
-  content:'';position:fixed;inset:0;z-index:-3;pointer-events:none;
-  background:radial-gradient(var(--bg-grid) 1px,transparent 1px);
-  background-size:46px 46px;animation:gridShift 90s linear infinite;
-}
-@keyframes gridShift{to{background-position:2200px 1600px}}
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-/* ───── Code-Rain Accent Lines ───── */
-body::after{
-  content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
-  background-image:linear-gradient(180deg,transparent 90%,var(--green-soft) 95%);
-  background-size:100% 5px;opacity:.12;animation:scan 8s linear infinite;
-}
-@keyframes scan{to{background-position-y:5px}}
+        section {
+            padding: 80px 0;
+        }
 
-/* ───── Hero Section ───── */
-.hero{
-  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-  align-items:center;text-align:center;padding:0 1.5rem;position:relative;overflow:hidden;
-}
-.hero h1{
-  font-size:clamp(3.2rem,7vw,5.4rem);font-weight:700;letter-spacing:-.5px;
-  background:linear-gradient(130deg,var(--green),#b0ffcb 40%,var(--green) 70%);
-  -webkit-background-clip:text;color:transparent;
-}
-.hero p{max-width:600px;margin-top:1.2rem;font-size:1.15rem;opacity:.92}
-.cta{
-  margin-top:2.4rem;padding:1rem 2.5rem;border:none;border-radius:var(--radius);
-  background:var(--green);color:#001b0a;font-weight:600;font-size:1rem;
-  box-shadow:var(--shadow);cursor:pointer;
-  transition:transform .24s,box-shadow .24s;
-}
-.cta:hover{transform:translateY(-5px);box-shadow:0 22px 55px rgba(17,255,99,.35)}
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
 
-/* Pulsing concentric rings */
-.ring{
-  position:absolute;border:2px solid var(--green-soft);border-radius:50%;
-  width:680px;height:680px;top:50%;left:50%;transform:translate(-50%,-50%);
-  animation:ringPulse 7s ease-in-out infinite;
-}
-@keyframes ringPulse{
-  0%,100%{transform:translate(-50%,-50%) scale(.9);opacity:.45}
-  50%{transform:translate(-50%,-50%) scale(1.1);opacity:.18}
-}
+        nav.scrolled {
+            background: var(--glass-dark);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+        }
 
-/* ───── Feature Grid ───── */
-.features{
-  display:grid;gap:2rem;padding:5.5rem 1.5rem;max-width:1220px;margin:auto;
-}
-@media(min-width:760px){.features{grid-template-columns:repeat(3,1fr)}}
-.card{
-  background:#0d0d0d;padding:2.2rem;border-radius:var(--radius);
-  border:1px solid var(--green-soft);box-shadow:var(--shadow);position:relative;overflow:hidden;
-}
-.card i{font-size:2.1rem;margin-bottom:1.2rem;color:var(--green)}
-.card::after{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(circle at 120% -20%,rgba(17,255,99,.25),transparent 60%);
-  transform:translateX(-100%);animation:glide 8s infinite linear;
-}
-@keyframes glide{to{transform:translateX(100%)}}
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* ───── Code Editor Demo ───── */
-.editor-wrap{background:#020202;padding:5.8rem 1.5rem}
-.editor{
-  margin:auto;width:min(95%,960px);background:#0f0f0f;border-radius:var(--radius);
-  box-shadow:var(--shadow);overflow:hidden;font-family:Menlo,monospace;font-size:.9rem;
-}
-.tabs{display:flex;background:#090909}
-.tab{padding:.6rem 1rem;font-size:.8rem;color:#7de8ab;border-right:1px solid #151515}
-.tab.active{background:#0f0f0f;color:var(--green)}
-pre{padding:1.55rem;line-height:1.58;color:#d3ffdd;overflow-x:auto}
-.k{color:#11ff63;font-weight:600}.fn{color:#55ffb0}.str{color:#c0ff95}
-.num{color:#ffd18f}.com{color:#5fa775;font-style:italic}
+        .logo {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
 
-/* ───── Footer ───── */
-footer{
-  background:#000;border-top:1px solid var(--green-soft);
-  text-align:center;padding:3rem 1.5rem;font-size:.85rem;opacity:.8;
-}
+        .logo span {
+            color: var(--accent-light);
+        }
 
-/* ───── Delayed-Reveal Hidden State ───── */
-.delayed-reveal{opacity:0;transform:translateY(30px);}
-</style>
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 16px;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-light);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, transparent 10%, var(--primary) 60%);
+            opacity: 0.7;
+            animation: pulse 15s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            z-index: 2;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* Glassmorphism Elements */
+        .glass-card {
+            background: var(--glass-medium);
+            backdrop-filter: blur(12px);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-light);
+            padding: 35px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: 1rem;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--accent-light);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--text);
+        }
+
+        .btn-outline::before {
+            background: var(--accent);
+        }
+
+        .btn-outline:hover {
+            color: white;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            background: var(--glass-light);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            position: relative;
+            padding: 100px 0;
+        }
+
+        .gallery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.03"><circle cx="50" cy="50" r="40" stroke="%239370DB" stroke-width="2" fill="none" /></svg>');
+            background-size: 200px;
+            opacity: 0.1;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            height: 300px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent-dark), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(to top, var(--primary), transparent);
+            opacity: 0;
+            transition: var(--transition);
+            transform: translateY(20px);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px;
+            background: var(--glass-medium);
+            border: 1px solid var(--glass-light);
+            border-radius: var(--border-radius);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .form-control::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px var(--accent-light);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--glass-dark);
+            padding: 50px 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            margin-top: 60px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--glass-medium);
+            color: var(--text);
+            margin: 0 12px;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .glass-card {
+                padding: 25px;
+            }
+        }
+
+        /* Animations */
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px var(--accent-light);
+            }
+            50% {
+                box-shadow: 0 0 20px var(--accent-light);
+            }
+            100% {
+                box-shadow: 0 0 5px var(--accent-light);
+            }
+        }
+
+        .glow-effect {
+            animation: glow 3s infinite;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            display: inline-block;
+            padding-bottom: 12px;
+            position: relative;
+            font-size: 2.5rem;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Hidden<span>Ink</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<!-- Magnetic Cursor Halo -->
-<svg id="halo" width="140" height="140" viewBox="0 0 140 140"
-     style="position:fixed;pointer-events:none;opacity:.18;z-index:2">
-  <circle cx="70" cy="70" r="69" fill="none" stroke="var(--green)" stroke-width="2"/>
-</svg>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="glass-card">
+                <h1>Reveal Your Creative Potential</h1>
+                <p>HiddenInk is where mystery meets innovation in digital creativity. Discover the art of subtle elegance.</p>
+                <a href="#contact" class="btn">Get Started</a>
+            </div>
+        </div>
+    </section>
 
-<!-- ═════ HERO ═════ -->
-<section class="hero">
-  <div class="ring"></div>
-  <h1>HiddenInk</h1>
-  <p>The <strong>AI-powered</strong> collaborative code editor engineered for high-velocity teams.</p>
-  <a href="mailto:inkshidden@gmail.com" class="cta">Partner with us</a>
-</section>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Vision</h2>
+                <p>Discover what makes HiddenInk a unique creative platform</p>
+            </div>
+            <div class="about-content">
+                <div class="glass-card">
+                    <p>HiddenInk is a creative platform designed for those who appreciate the mysterious and premium aspects of digital art and design. We believe in the power of hidden potential and the beauty that emerges when creativity is unleashed.</p>
+                    <p>Our mission is to provide a space where designers, artists, and creators can explore new dimensions of glassmorphism and innovative design techniques.</p>
+                </div>
+                <div class="glass-card">
+                    <p>We combine cutting-edge technology with artistic vision to deliver experiences that captivate and inspire. The subtle glow effects and translucent layers create a sense of depth and mystery that defines the HiddenInk aesthetic.</p>
+                    <p>Join us on this journey to redefine digital creativity and uncover the hidden ink within your projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ═════ FEATURES ═════ -->
-<section class="features">
-  <article class="card"><i class="fa-solid fa-sparkles"></i>
-    <h3>AI Pair-Pro</h3><p>Context-aware completions, refactors & tests tuned to **your** repo.</p>
-  </article>
-  <article class="card"><i class="fa-solid fa-users-line"></i>
-    <h3>Real-time Collab</h3><p>Live cursors, voice huddles & shared terminals—zero latency.</p>
-  </article>
-  <article class="card"><i class="fa-solid fa-shield-halved"></i>
-    <h3>Security First</h3><p>SOC-2 pipelines, on-prem models & field-level encryption keep IP safe.</p>
-  </article>
-  <article class="card"><i class="fa-solid fa-gauge-high"></i>
-    <h3>Turbo Core</h3><p>Wasm engine opens 20,000-file monorepos **5× faster** than VS Code.</p>
-  </article>
-  <article class="card"><i class="fa-solid fa-wand-magic-sparkles"></i>
-    <h3>Self-Healing</h3><p>Bots auto-patch deps, fix lints & raise architectural PRs.</p>
-  </article>
-  <article class="card"><i class="fa-solid fa-bolt-lightning"></i>
-    <h3>Offline-First</h3><p>Full parity without internet; sync when back online—perfect for secure labs.</p>
-  </article>
-</section>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Premium creative solutions tailored to your needs</p>
+            </div>
+            <div class="features-grid">
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Creative Design</h3>
+                    <p>Custom glassmorphism designs tailored to your brand's unique identity and vision with a focus on elegance and mystery.</p>
+                </div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Development</h3>
+                    <p>Implementation of stunning glassmorphism effects into functional, responsive websites that captivate your audience.</p>
+                </div>
+                <div class="glass-card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Color Consulting</h3>
+                    <p>Expert guidance on creating unique color palettes that enhance the mysterious vibe and premium feel of your projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ═════ CODE DEMO ═════ -->
-<section class="editor-wrap">
-  <div class="editor">
-    <div class="tabs">
-      <div class="tab active">app.ts</div><div class="tab">utils/date.ts</div><div class="tab">README.md</div>
-    </div>
-<pre>
-<span class="com">// HiddenInk AI session</span>
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Showcase</h2>
+                <p>Explore our portfolio of mysterious and elegant designs</p>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <div class="gallery-img">Mysterious Design</div>
+                    <div class="gallery-overlay">
+                        <h3>Mysterious Design</h3>
+                        <p>Glassmorphism with a hidden touch</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-img">Premium Style</div>
+                    <div class="gallery-overlay">
+                        <h3>Premium Style</h3>
+                        <p>Elegant and sophisticated designs</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-img">Creative Vision</div>
+                    <div class="gallery-overlay">
+                        <h3>Creative Vision</h3>
+                        <p>Bringing ideas to life</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<span class="k">async</span> <span class="k">function</span> <span class="fn">askHiddenInk</span>(question: <span class="str">string</span>) {
-  <span class="k">return</span> <span class="fn">AI.complete</span>({
-    prompt: question,
-    maxTokens: <span class="num">256</span>
-  });
-}
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Join Us</h2>
+                <p>Ready to reveal your creative potential? Get in touch with us</p>
+            </div>
+            <div class="glass-card contact-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Your Message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-outline">Submit</button>
+            </div>
+        </div>
+    </section>
 
-<span class="com">// Generate tests instantly</span>
-<span class="k">await</span> <span class="fn">askHiddenInk</span>(<span class="str">"Generate unit tests for utils/date.ts"</span>)
-  .<span class="fn">then</span>(res => console.<span class="fn">log</span>(res))
-  .<span class="fn">catch</span>(err => console.<span class="fn">error</span>(err));
-</pre>
-  </div>
-</section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo">Hidden<span>Ink</span></div>
+            <p>Where mystery meets creativity</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+            </div>
+            <p>&copy; 2023 HiddenInk. All rights reserved.</p>
+        </div>
+    </footer>
 
-<!-- ═════ FOOTER ═════ -->
-<footer>© 2025 HiddenInk · All rights reserved</footer>
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
 
-<!-- ───────── JavaScript FX ───────── -->
-<script>
-/* Magnetic halo */
-const halo=document.getElementById('halo');
-window.addEventListener('mousemove',e=>{
-  halo.style.transform=`translate(${e.clientX-70}px,${e.clientY-70}px)`;
-});
+        // Add glowing effect to buttons on hover
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.classList.add('glow-effect');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('glow-effect');
+            });
+        });
 
-/* Delayed-reveal cascade */
-document.addEventListener("DOMContentLoaded",()=>{
-  const targets=document.querySelectorAll(
-    "header h1, header p, .cta, .features .card, .editor-wrap, footer"
-  );
-  targets.forEach(el=>el.classList.add("delayed-reveal"));
-  setTimeout(()=>{
-    anime({
-      targets:".delayed-reveal",
-      opacity:[0,1],
-      translateY:[30,0],
-      delay:(el,i)=>i*120,
-      duration:800,
-      easing:"easeOutExpo"
-    });
-  },600); // start after 0.6 s
-});
-</script>
+        // Simple animation for feature cards
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('.feature-icon').style.transform = 'scale(1.2)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.feature-icon').style.transform = 'scale(1)';
+            });
+        });
+    </script>
 </body>
 </html>
