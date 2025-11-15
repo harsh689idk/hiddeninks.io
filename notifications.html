@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - HiddenInk</title>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <h1>HiddenInk</h1>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2"/>
+                            <polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Home</span>
+                    </a>
+                    <a href="search.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Search</span>
+                    </a>
+                    <a href="chat.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Messages</span>
+                    </a>
+                    <a href="ask.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2"/>
+                            <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Post Question</span>
+                    </a>
+                    <a href="leaderboard.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M20 8v6M23 11h-6" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Leaderboard</span>
+                    </a>
+                    <a href="notifications.html" class="nav-item active">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2"/>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Notifications</span>
+                    </a>
+                    <a href="profile.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Profile</span>
+                    </a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="user-profile">
+                        <div class="user-avatar-small"></div>
+                        <div class="user-info">
+                            <span class="username">student_123</span>
+                            <span class="user-points">150 points</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-content">
+                    <h1 class="notifications-title">Notifications</h1>
+                    <div class="notifications-actions">
+                        <button class="notifications-action-btn" id="markAllReadBtn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2"/>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            Mark all as read
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Notifications Content -->
+            <div class="notifications-container">
+                <!-- Today Section -->
+                <div class="notifications-section">
+                    <h2 class="section-title">Today</h2>
+                    <div class="notifications-list">
+                        <!-- Notification 1 - Points Earned -->
+                        <div class="notification-item unread" data-id="1">
+                            <div class="notification-avatar points">
+                                <div class="notification-icon">🏆</div>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-text">
+                                    <strong>+20 points earned!</strong> You got the first correct answer on "Integration Problem Help"
+                                </div>
+                                <div class="notification-time">2 minutes ago</div>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="notification-action-btn" title="Mark as read">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Notification 2 - New Follower -->
+                        <div class="notification-item unread" data-id="2">
+                            <div class="notification-avatar">
+                                <div class="user-avatar-small"></div>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-text">
+                                    <strong>physics_wizard</strong> started following you
+                                </div>
+                                <div class="notification-time">15 minutes ago</div>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="follow-back-btn">Follow back</button>
+                                <button class="notification-action-btn" title="Mark as read">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Notification 3 - Question Answered -->
+                        <div class="notification-item" data-id="3">
+                            <div class="notification-avatar">
+                                <div class="user-avatar-small"></div>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-text">
+                                    <strong>math_pro</strong> answered your question "Linear Algebra Help Needed"
+                                </div>
+                                <div class="notification-time">1 hour ago</div>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="notification-action-btn" title="Mark as read">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- This Week Section -->
+                <div class="notifications-section">
+                    <h2 class="section-title">This Week</h2>
+                    <div class="notifications-list">
+                        <!-- Notification 4 - Achievement Unlocked -->
+                        <div class="notification-item" data-id="4">
+                            <div class="notification-avatar achievement">
+                                <div class="notification-icon">🌟</div>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-text">
+                                    <strong>Quick Thinker achievement unlocked!</strong> You've earned 5 first correct answers
+                                </div>
+                                <div class="notification-time">2 days ago</div>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="notification-action-btn" title="Mark as read">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Notification 5 - New Follower -->
+                        <div class="notification-item" data-id="5">
+                            <div class="notification-avatar">
+                                <div class="user-avatar-small"></div>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-text">
+                                    <strong>code_master</strong> started following you
+                                </div>
+                                <div class="notification-time">3 days ago</div>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="follow-back-btn">Follow back</button>
+                                <button class="notification-action-btn" title="Mark as read">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Notification 6 - Points Earned -->
+                        <div class="notification-item" data-id="6">
+                            <div class="notification-avatar points">
+                                <div class="notification-icon">⚡</div>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-text">
+                                    <strong>+10 points earned!</strong> Correct answer on "Physics Kinematics Problem"
+                                </div>
+                                <div class="notification-time">4 days ago</div>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="notification-action-btn" title="Mark as read">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earlier Section -->
+                <div class="notifications-section">
+                    <h2 class="section-title">Earlier</h2>
+                    <div class="notifications-list">
+                        <!-- Notification 7 - Welcome -->
+                        <div class="notification-item" data-id="7">
+                            <div class="notification-avatar welcome">
+                                <div class="notification-icon">👋</div>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-text">
+                                    <strong>Welcome to HiddenInk!</strong> Start by posting questions or answering others to earn points
+                                </div>
+                                <div class="notification-time">1 week ago</div>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="notification-action-btn" title="Mark as read">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty State (hidden by default) -->
+                <div class="empty-notifications" style="display: none;">
+                    <div class="empty-state">
+                        <div class="empty-icon">🔔</div>
+                        <h3>No notifications yet</h3>
+                        <p>When you get notifications, they'll appear here</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/notifications.js"></script>
+</body>
+</html>
