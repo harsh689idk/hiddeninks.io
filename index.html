@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiddenInk - Study Community</title>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <h1>HiddenInk</h1>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="nav-item active">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2"/>
+                            <polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Home</span>
+                    </a>
+                    <a href="search.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Search</span>
+                    </a>
+                    <a href="chat.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Messages</span>
+                    </a>
+                    <a href="ask.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2"/>
+                            <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Post Question</span>
+                    </a>
+                    <a href="leaderboard.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M20 8v6M23 11h-6" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Leaderboard</span>
+                    </a>
+                    <a href="notifications.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2"/>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Notifications</span>
+                    </a>
+                    <a href="profile.html" class="nav-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Profile</span>
+                    </a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="user-profile">
+                        <div class="user-avatar-small"></div>
+                        <div class="user-info">
+                            <span class="username">student_123</span>
+                            <span class="user-points">150 points</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-content">
+                    <div class="search-container">
+                        <div class="search-bar">
+                            <input type="text" class="search-input" placeholder="Search questions..." />
+                            <div class="search-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="search-glow"></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Feed Content -->
+            <div class="feed-container">
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <button class="action-btn primary" onclick="location.href='ask.html'">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2"/>
+                            <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Post Question
+                    </button>
+                    <button class="action-btn secondary" onclick="location.href='leaderboard.html'">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M20 8v6M23 11h-6" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Leaderboard
+                    </button>
+                </div>
+
+                <!-- Feed Posts -->
+                <div class="feed-posts">
+                    <!-- Post 1 - Math Question -->
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="user-avatar"></div>
+                                <div class="user-info">
+                                    <span class="username">math_student</span>
+                                    <span class="post-time">2h ago • Calculus</span>
+                                </div>
+                            </div>
+                            <button class="post-menu">⋯</button>
+                        </div>
+
+                        <div class="post-content">
+                            <div class="question-text">
+                                <h3>Need help with this integration problem</h3>
+                                <p>I can't figure out how to solve ∫(3x² + 2x - 1)dx from 0 to 2. Any help would be appreciated!</p>
+                            </div>
+                            
+                            <div class="question-image">
+                                <div class="image-placeholder">
+                                    <span>Problem Image</span>
+                                </div>
+                            </div>
+
+                            <div class="answer-section">
+                                <div class="correct-answer">
+                                    <strong>Correct Answer:</strong>
+                                    <span class="answer-value">14.0</span>
+                                </div>
+                                <div class="points-info">
+                                    <span class="points-badge">+20 pts</span> for first correct answer
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="post-actions">
+                            <button class="action-btn like-btn" data-likes="12">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <span class="like-count">12</span>
+                            </button>
+                            <button class="action-btn answer-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <span>Answer</span>
+                            </button>
+                            <div class="post-stats-mini">
+                                <span>5 answers</span>
+                            </div>
+                        </div>
+
+                        <div class="answer-input-section">
+                            <div class="answer-input-container">
+                                <input type="number" step="0.1" class="answer-input" placeholder="Enter your answer (number)">
+                                <button class="submit-answer-btn">Submit Answer</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post 2 - Physics Question -->
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="user-avatar"></div>
+                                <div class="user-info">
+                                    <span class="username">physics_learner</span>
+                                    <span class="post-time">5h ago • Physics</span>
+                                </div>
+                            </div>
+                            <button class="post-menu">⋯</button>
+                        </div>
+
+                        <div class="post-content">
+                            <div class="question-text">
+                                <h3>Kinematics problem - Projectile motion</h3>
+                                <p>A ball is thrown at 20 m/s at 45° angle. What's the maximum height reached? (g = 9.8 m/s²)</p>
+                            </div>
+                            
+                            <div class="question-image">
+                                <div class="image-placeholder">
+                                    <span>Diagram Image</span>
+                                </div>
+                            </div>
+
+                            <div class="answer-section">
+                                <div class="correct-answer">
+                                    <strong>Correct Answer:</strong>
+                                    <span class="answer-value">10.2</span>
+                                </div>
+                                <div class="points-info">
+                                    <span class="points-badge">+10 pts</span> for correct answers now
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="post-actions">
+                            <button class="action-btn like-btn" data-likes="24">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <span class="like-count">24</span>
+                            </button>
+                            <button class="action-btn answer-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                <span>Answer</span>
+                            </button>
+                            <div class="post-stats-mini">
+                                <span>12 answers</span>
+                            </div>
+                        </div>
+
+                        <div class="answer-input-section">
+                            <div class="answer-input-container">
+                                <input type="number" step="0.1" class="answer-input" placeholder="Enter your answer (number)">
+                                <button class="submit-answer-btn">Submit Answer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Success Notification -->
+    <div class="notification" id="successNotification">
+        <div class="notification-content">
+            <div class="notification-icon">✓</div>
+            <div class="notification-text">
+                <strong>Correct Answer!</strong>
+                <span>+10 points earned!</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/feed.js"></script>
+</body>
+</html>
