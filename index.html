@@ -1,294 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HiddenInk.in | Game Studio</title>
-
-<style>
-:root {
-  --blue: #4facfe;
-  --purple: #8f5bff;
-  --orange: #ff9f43;
-  --bg-dark: #0b0b10;
-  --card-dark: rgba(255,255,255,0.06);
-  --text-main: #ffffff;
-  --text-muted: #b9b9c9;
-}
-
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", system-ui, sans-serif;
-}
-
-body {
-  min-height: 100vh;
-  background: linear-gradient(120deg, var(--blue), var(--purple), var(--orange));
-  background-size: 400% 400%;
-  animation: gradientFlow 12s ease infinite;
-  color: var(--text-main);
-  overflow-x: hidden;
-}
-
-/* BACKGROUND OVERLAY */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at top, rgba(0,0,0,0.3), var(--bg-dark));
-  z-index: -1;
-}
-
-/* ANIMATION */
-@keyframes gradientFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* HEADER */
-header {
-  padding: 30px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 1.6rem;
-  font-weight: 900;
-  background: linear-gradient(90deg, var(--blue), var(--purple), var(--orange));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* HERO */
-.hero {
-  padding: 90px 8%;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-.hero h1 {
-  font-size: 3.4rem;
-  font-weight: 900;
-  line-height: 1.1;
-}
-
-.hero h1 span {
-  background: linear-gradient(90deg, var(--blue), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero p {
-  margin-top: 25px;
-  max-width: 520px;
-  color: var(--text-muted);
-  font-size: 1.1rem;
-}
-
-.cta {
-  margin-top: 40px;
-}
-
-.cta a {
-  display: inline-block;
-  padding: 16px 34px;
-  border-radius: 16px;
-  background: linear-gradient(90deg, var(--blue), var(--purple), var(--orange));
-  color: #000;
-  font-weight: 700;
-  transition: 0.3s ease;
-}
-
-.cta a:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-}
-
-/* GLASS CARD */
-.glass {
-  background: var(--card-dark);
-  backdrop-filter: blur(20px);
-  border-radius: 28px;
-  padding: 40px;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
-}
-
-.glass h2 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-}
-
-.glass p {
-  color: var(--text-muted);
-  font-size: 1rem;
-}
-
-/* SECTIONS */
-section {
-  padding: 90px 8%;
-}
-
-.section-title {
-  font-size: 2.3rem;
-  font-weight: 900;
-  margin-bottom: 15px;
-}
-
-.section-desc {
-  max-width: 620px;
-  color: var(--text-muted);
-  margin-bottom: 50px;
-}
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
-}
-
-.feature {
-  background: var(--card-dark);
-  backdrop-filter: blur(15px);
-  border-radius: 22px;
-  padding: 35px;
-  transition: 0.35s ease;
-}
-
-.feature:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-}
-
-.feature h3 {
-  margin-bottom: 12px;
-  font-size: 1.3rem;
-}
-
-.feature p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
-
-/* CONTACT */
-.contact {
-  text-align: center;
-}
-
-.contact h2 {
-  font-size: 2.4rem;
-}
-
-.contact p {
-  margin-top: 15px;
-  color: var(--text-muted);
-}
-
-.contact a {
-  margin-top: 30px;
-  display: inline-block;
-  font-size: 1.1rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, var(--blue), var(--orange));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* FOOTER */
-footer {
-  padding: 40px 8%;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-
-  .hero h1 {
-    font-size: 2.6rem;
-  }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiddenInk · game operation & partnership</title>
+    <!-- Fonts & CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-  <div class="logo">HiddenInk.in</div>
-</header>
+    <!-- Custom cursor elements (always on top) -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
 
-<section class="hero">
-  <div>
-    <h1>We create <span>interactive worlds</span><br>inside games</h1>
-    <p>
-      HiddenInk.in is a game studio focused on building immersive experiences on Roblox.
-      We combine creativity, code, and design to craft worlds players remember.
-    </p>
+    <!-- FULL-SCREEN INK INTRO with new animation -->
+    <section class="ink-intro" id="inkIntro">
+        <div class="ink-title-large">HiddenInk</div>
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <span class="scroll-text">Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
 
-    <div class="cta">
-      <a href="mailto:inkshidden@gmail.com">Contact Us</a>
+    <!-- Navigation with logo -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">HiddenInk</div>
+            <div class="nav-links">
+                <a href="#work">Work with us</a>
+                <a href="#partner">Partner with us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="parallax-bg" id="parallaxBg"></div>
+        <div class="hero-content">
+            <h1 class="reveal">We Don’t Just Publish Games.<br>We Build Their Future.</h1>
+            <p class="reveal delay-200">HiddenInk partners with developers to operate and grow games for the long term.<br>Sustainable success, shared equally.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn primary work-btn">Work with us</a>
+                <a href="#" class="btn secondary partner-btn">Partner with us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFFERENCE SECTION -->
+    <section class="difference">
+        <h2 class="section-title reveal">The HiddenInk Difference</h2>
+        <div class="cards-grid">
+            <div class="card reveal">
+                <h3>True Partnership</h3>
+                <p>We operate with you, not just for you. Your vision, our operational engine. Revenue is shared, success is mutual.</p>
+            </div>
+            <div class="card reveal delay-200">
+                <h3>Long-Term Operation</h3>
+                <p>We focus on sustainable growth, not quick flips. Building communities and optimizing experiences for years of player engagement.</p>
+            </div>
+            <div class="card reveal delay-400">
+                <h3>Dedicated Resources</h3>
+                <p>Your game gains a dedicated team for marketing, community management, and data analysis—amplifying your creative work.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO (conceptual) -->
+    <section class="portfolio">
+        <h2 class="section-title reveal">Our Portfolio</h2>
+        <p class="section-sub reveal">Groundbreaking titles in the making. Join us to build the next.</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-card reveal">
+                <div class="card-image" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZmIj48cGF0aCBkPSJNMjEgMTZ2LTJsLTggNC41LTgtNC41djJsOCA0LjUgOC00LjV6bTAtNnYtMmwtOCA0LjUtOC00LjV2Mmw4IDQuNSA4LTQuNXoiLz48L3N2Zz4=');"></div>
+                <h3>Project Aethra</h3>
+                <p class="card-tag">Announcing 2025</p>
+            </div>
+            <div class="portfolio-card reveal delay-200">
+                <div class="card-image" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZmIj48cGF0aCBkPSJNMjEgMTZ2LTJsLTggNC41LTgtNC41djJsOCA0LjUgOC00LjV6bTAtNnYtMmwtOCA0LjUtOC00LjV2Mmw4IDQuNSA4LTQuNXoiLz48L3N2Zz4=');"></div>
+                <h3>Untitled Racer</h3>
+                <p class="card-tag">In Partnership</p>
+            </div>
+            <div class="portfolio-card reveal delay-400">
+                <div class="card-image" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZmIj48cGF0aCBkPSJNMjEgMTZ2LTJsLTggNC41LTgtNC41djJsOCA0LjUgOC00LjV6bTAtNnYtMmwtOCA0LjUtOC00LjV2Mmw4IDQuNSA4LTQuNXoiLz48L3N2Zz4=');"></div>
+                <h3>Fantasy World</h3>
+                <p class="card-tag">Coming Soon</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section class="process">
+        <h2 class="section-title reveal">How We Operate</h2>
+        <div class="process-timeline">
+            <div class="process-step reveal">
+                <div class="step-number">01</div>
+                <h3>Deep Dive</h3>
+                <p>We analyze your game's potential and align on a shared vision.</p>
+            </div>
+            <div class="process-step reveal delay-200">
+                <div class="step-number">02</div>
+                <h3>Strategic Partnership</h3>
+                <p>Formalizing our collaboration for operation and growth.</p>
+            </div>
+            <div class="process-step reveal delay-400">
+                <div class="step-number">03</div>
+                <h3>Growth & Operation</h3>
+                <p>Our teams execute marketing, community building, and live-ops. You focus on development.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TWO CTA SECTIONS -->
+    <section class="cta-work" id="work">
+        <div class="cta-content">
+            <h2 class="reveal">Join the HiddenInk Team</h2>
+            <p class="reveal delay-200">We're looking for passionate people to help us build the future of Roblox games. Apply to work with us.</p>
+            <a href="#" class="btn primary large reveal delay-400 work-btn">Work with us</a>
+        </div>
+    </section>
+
+    <section class="cta-partner" id="partner">
+        <div class="cta-content">
+            <h2 class="reveal">Co-Own Your Game's Success</h2>
+            <p class="reveal delay-200">Have a game with potential? Partner with us to operate and grow it together, sharing in the long-term success.</p>
+            <a href="#" class="btn secondary large reveal delay-400 partner-btn">Partner with us</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">HiddenInk</div>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+            <p class="footer-copy">© 2025 HiddenInk. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Work with us (Job Applications) -->
+    <div class="modal" id="workModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Work with us</h3>
+            <p class="modal-sub">Tell us about yourself and why you want to join HiddenInk.</p>
+            <form id="workForm">
+                <input type="text" placeholder="Full name" required>
+                <input type="email" placeholder="Email address" required>
+                <input type="text" placeholder="Role you're interested in">
+                <textarea placeholder="Tell us about your experience and why you'd be a great fit" rows="4"></textarea>
+                <input type="text" placeholder="Link to resume / portfolio (optional)">
+                <button type="submit" class="btn primary">Submit application</button>
+            </form>
+        </div>
     </div>
-  </div>
 
-  <div class="glass">
-    <h2>Game Studio</h2>
-    <p>
-      Roblox is our starting point.
-      Strong ideas, scalable systems, and long-term vision define our work.
-    </p>
-  </div>
-</section>
-
-<section>
-  <h2 class="section-title">What We Build</h2>
-  <p class="section-desc">
-    We focus on experiences that feel alive, polished, and replayable.
-  </p>
-
-  <div class="features">
-    <div class="feature">
-      <h3>Roblox Games</h3>
-      <p>
-        High-quality games built with performance, progression, and fun in mind.
-      </p>
+    <!-- Modal for Partner with us (Game Co-ownership) -->
+    <div class="modal" id="partnerModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Partner with us</h3>
+            <p class="modal-sub">Tell us about your game and how we can grow together.</p>
+            <form id="partnerForm">
+                <input type="text" placeholder="Your name" required>
+                <input type="email" placeholder="Email address" required>
+                <input type="text" placeholder="Game name" required>
+                <textarea placeholder="Describe your game, its current status, and your vision" rows="4" required></textarea>
+                <input type="text" placeholder="Link to game / trailer (optional)">
+                <button type="submit" class="btn primary">Send partnership inquiry</button>
+            </form>
+        </div>
     </div>
 
-    <div class="feature">
-      <h3>Original Concepts</h3>
-      <p>
-        Unique ideas transformed into playable digital experiences.
-      </p>
-    </div>
-
-    <div class="feature">
-      <h3>Future Expansion</h3>
-      <p>
-        Starting with Roblox, expanding to broader platforms over time.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="contact">
-  <h2>Want to work with us?</h2>
-  <p>Reach out for collaborations, ideas, or opportunities.</p>
-  <a href="mailto:inkshidden@gmail.com">inkshidden@gmail.com</a>
-</section>
-
-<footer>
-  © 2025 HiddenInk.in — Building worlds through code and creativity.
-</footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
